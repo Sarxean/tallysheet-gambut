@@ -1,0 +1,738 @@
+// --- FORM 1 ---
+const Tallysheet1 = ({ formData, setFormData }) => {
+  
+  const requiredFields = ['khg', 'pelaksana', 'tahun', 'nomor_titik_survey', 'hari_tanggal', 'nama_surveyor'];
+
+const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value,
+    }));
+  };
+return (
+    <div className="page-container">
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            body {
+              margin: 0;
+              font-family: cambria;
+            }
+
+            .page-container {
+              padding: 30.236px 37.795px 30.236px 56.693px;
+              background-color: #fff;
+            }
+
+            .table-primary, .table-secondary {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 20px;
+            }
+
+            .table-secondary th, .table-secondary td {
+              border: 1px solid black;
+              padding: 4px;
+              font-family: cambria;
+              font-size: 11pt;
+              vertical-align: top;
+            }
+
+            .table-secondary th {
+              background-color: #D5DCE4;
+              text-align: center;
+              font-size: 12pt;
+            }
+
+            h1, h2 {
+              font-family: cambria;
+              font-size: 14pt;
+              text-align: center;
+              font-Weight: bold;
+            }
+
+          `,
+        }}
+      />
+  
+    <h1 style={{margin: 0}}><center><i>TALLY SHEET</i></center></h1>
+    <h1 style={{margin: 0}}><center>INVENTARISASI KARAKTERISTIK EKOSISTEM GAMBUT (SKALA 1:50.000)</center></h1>
+    <br />
+    <h2 style={{margin: 0}}><center><input type="text" name="khg" value={formData.khg || ""} onChange={handleChange} style={{fontFamily: 'cambria', fontSize: '14.0pt', fontWeight: 'bold', padding: '0px', textAlign: 'center'}} /></center></h2>
+    <h2 style={{margin: 2}}><center><input type="text" name="pelaksana" value={formData.pelaksana || ""} onChange={handleChange} style={{fontFamily: 'cambria', fontSize: '14.0pt', fontWeight: 'bold', padding: '0px', textAlign: 'center'}} /></center></h2>
+    <h2 style={{margin: 2}}><center><input type="text" name="tahun" value={formData.tahun || ""} onChange={handleChange} style={{fontFamily: 'cambria', fontSize: '14.0pt', fontWeight: 'bold', padding: '0px', textAlign: 'center'}} /></center></h2>
+    <table className="table-primary">
+      <tbody><tr>
+          <td style={{width: '20%'}}> Nomor Titik Survey</td>
+          <td style={{width: '1%'}}>:</td>
+          <td><input type="text" name="nomor_titik_survey" value={formData.nomor_titik_survey || ""} onChange={handleChange} style={{padding: '0px'}}/></td>
+        </tr>
+        <tr>
+          <td style={{width: '20%'}}>Hari/Tanggal</td>
+          <td style={{width: '1%'}}>:</td>
+          <td><input type="text" name="hari_tanggal" value={formData.hari_tanggal || ""} onChange={handleChange} style={{padding: '0px'}}/></td>
+        </tr>
+        <tr>
+          <td style={{width: '20%'}}>Nama Surveyor</td>
+          <td style={{width: '1%'}}>:</td>
+          <td><input type="text" name="nama_surveyor" value={formData.nama_surveyor || ""} onChange={handleChange} style={{padding: '0px'}}/></td>
+        </tr>
+      </tbody></table>
+    <table className="table-primary">
+      <tbody><tr>
+          <td colSpan={6}>Administrasi Wilayah:</td>
+        </tr>
+        <tr>
+          <td style={{width: '15%'}}>a. Dusun</td>
+          <td style={{width: '1%'}}>:</td>
+          <td style={{width: '35%'}}><input type="text" name="dusun" value={formData.dusun || ""} onChange={handleChange} style={{padding: '0px'}}/></td>
+          <td style={{width: '15%'}}>c. Kecamatan</td>
+          <td style={{width: '1%'}}>:</td>
+          <td style={{width: '35%'}}><input type="text" name="kecamatan" value={formData.kecamatan || ""} onChange={handleChange} style={{padding: '0px'}}/></td>
+        </tr>
+        <tr>
+          <td style={{width: '15%'}}>b. Desa</td>
+          <td style={{width: '1%'}}>:</td>
+          <td style={{width: '35%'}}><input type="text" name="desa" value={formData.desa || ""} onChange={handleChange} style={{padding: '0px'}}/></td>
+          <td style={{width: '15%'}}>d. Kabupaten</td>
+          <td style={{width: '1%'}}>:</td>
+          <td style={{width: '35%'}}><input type="text" name="kabupaten" value={formData.kabupaten || ""} onChange={handleChange} style={{padding: '0px'}}/></td>
+        </tr>
+      </tbody></table>
+    <br />
+    <br />
+    <table className="table-secondary">
+      <tbody><tr>
+          <th colSpan={3}>A.	FORMULIR <i>TALLYSHEET</i></th>
+        </tr>
+        <tr>
+          <th style={{width: '2%'}}>No.</th>
+          <th colSpan={2}>Keterangan</th>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center', verticalAlign: 'top'}}>1</td>
+          <td colSpan={2}>Koordinat Titik Survey
+            <br />
+            <label>- Latitude  :</label>
+            <input type="number" name="latitude_derajat" value={formData.latitude_derajat || ""} onChange={handleChange} min={0} max={120} placeholder="°" style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> °
+            <input type="number" name="latitude_menit" value={formData.latitude_menit || ""} onChange={handleChange} min={0} max={59} placeholder="'" style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> '
+            <input type="number" name="latitude_detik" value={formData.latitude_detik || ""} onChange={handleChange} min={0} max={59} placeholder="&quot;" style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> "
+            <select name="latitude_arah" value={formData.latitude_arah || ""} onChange={handleChange} style={{width: '60px', padding:'0px'}}>
+              <option value="LS">LS</option>
+              <option value="LU">LU</option>
+            </select>
+            <br />
+            <label>- Longitude  :</label>
+            <input type="number" name="longitude_derajat" value={formData.longitude_derajat || ""} onChange={handleChange} min={0} max={120} placeholder="°" style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> °
+            <input type="number" name="longitude_menit" value={formData.longitude_menit || ""} onChange={handleChange} min={0} max={59} placeholder="'" style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> '
+            <input type="number" name="longitude_detik" value={formData.longitude_detik || ""} onChange={handleChange} min={0} max={59} placeholder="&quot;" style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> "
+            <select name="longitude_arah" value={formData.longitude_arah || ""} onChange={handleChange} style={{width: '60px', padding:'0px'}}>
+              <option value="BT">BT</option>
+              <option value="BB">BB</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center', verticalAlign: 'top'}}>2</td>
+          <td colSpan={2}>Elevasi Lahan (mdpl) : 
+            <input type="number" name="elevasi_lahan" value={formData.elevasi_lahan || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px'}} />
+          </td>
+        </tr>
+        <tr>
+          <td rowSpan={3} style={{width: '2%', textAlign: 'center', verticalAlign: 'top'}}>3</td>
+          <td style={{width: '30%'}}>
+            <ol type="a" style={{margin: 0, paddingLeft: '13px'}}>
+              <li>Kedalaman Air Tanah / Tinggi Muka Air (TMAT) saat ini</li>
+            </ol>
+          </td>
+          <td><div><input type="number" name="kedalaman_air_tanah" value={formData.kedalaman_air_tanah || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> cm</div></td>
+        </tr><tr>
+          <td style={{width: '30%'}}>
+            <ol type="a" start={2} style={{margin: 0, paddingLeft: '13px'}}>
+              <li>Genangan (di atas permukaan tanah)</li>
+            </ol>
+          </td>
+          <td><div><input type="number" name="genangan" value={formData.genangan || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> cm</div></td>
+        </tr>
+        <tr>
+          <td style={{width: '30%', verticalAlign: 'top'}}>
+            <ol type="a" start={3} style={{margin: 0, paddingLeft: '13px'}}>
+              <li>Banjir (wawancara/data sekunder/pengamatan)</li>
+            </ol>
+          </td>
+          <td>
+            Bulan : <input type="text" name="banjir_bulan" value={formData.banjir_bulan || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px'}} />, lamanya : <input type="text" name="banjir_lama_hari" value={formData.banjir_lama_hari || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px'}} /> hari
+            <br />
+            Ketinggian air : <input type="number" name="banjir_ketinggian_air" value={formData.banjir_ketinggian_air || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> cm
+            <br />
+            Sumber air genangan : (<input type="text" name="sumber_air_hujan" value={formData.sumber_air_hujan || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) hujan, (<input type="text" name="sumber_air_limpasan_sungai" value={formData.sumber_air_limpasan_sungai || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) limpasan sungai,
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="text" name="sumber_air_kiriman_hulu" value={formData.sumber_air_kiriman_hulu || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) kiriman dari hulu, (<input type="text" name="sumber_air_lainnya_checkbox" value={formData.sumber_air_lainnya_checkbox || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) lainnya  <input type="text" name="sumber_air_lainnya_text" value={formData.sumber_air_lainnya_text || ""} onChange={handleChange} style={{width: '100px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px'}} />
+          </td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>4</td>
+          <td> 
+            Tutupan lahan, peggunaan lahan dan kondisinya
+            <br />
+            <br />
+            Keterangan :
+            <br />
+            - jenis tanaman : <input type="text" name="jenis_tanaman" value={formData.jenis_tanaman || ""} onChange={handleChange} style={{padding:'0px'}}/>
+            <br />
+            - status : 
+            <br />
+            &nbsp;&nbsp;(<input type="text" name="status_masyarakat" value={formData.status_masyarakat || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) masyarakat, (<input type="text" name="status_perusahaan" value={formData.status_perusahaan || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) perusahaan 
+            &nbsp;&nbsp;Nama Perusahaan : <input type="text" name="nama_perusahaan" value={formData.nama_perusahaan || ""} onChange={handleChange} style={{width: '100px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px'}} />
+            &nbsp;&nbsp;Luas konsesi HTI/HGU : <input type="text" name="luas_konsesi" value={formData.luas_konsesi || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px'}} />
+          </td>
+          <td>
+            Tutupan lahan dan penggunaan lahan:
+            <br />
+            (<input type="text" name="tutupan_lahan_hutan" value={formData.tutupan_lahan_hutan || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) hutan (Ht)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="text" name="tutupan_lahan_sawah" value={formData.tutupan_lahan_sawah || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) sawah (Sw)
+            <br />
+            (<input type="text" name="tutupan_lahan_perkebunan" value={formData.tutupan_lahan_perkebunan || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) perkebunan (Pb)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="text" name="tutupan_lahan_mangrove" value={formData.tutupan_lahan_mangrove || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) mangrove
+            <br />
+            (<input type="text" name="tutupan_lahan_kebun_campuran" value={formData.tutupan_lahan_kebun_campuran || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) kebun campuran (Kc)&nbsp;&nbsp;&nbsp;&nbsp;(<input type="text" name="tutupan_lahan_tanah_terbuka" value={formData.tutupan_lahan_tanah_terbuka || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) tanah terbuka
+            <br />
+            (<input type="text" name="tutupan_lahan_semak_belukar" value={formData.tutupan_lahan_semak_belukar || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) semak belukar (Sb)
+            <br />
+            (<input type="text" name="tutupan_lahan_ladang_tegalan" value={formData.tutupan_lahan_ladang_tegalan || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) ladang/tegalan (Ld)
+            <br />
+            (<input type="text" name="tutupan_lahan_tambak_empang" value={formData.tutupan_lahan_tambak_empang || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) tambak/empang
+          </td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>5</td>
+          <td>Keberadaan flora dan fauna yang dilindungi</td>
+          <td>
+            Flora&nbsp;&nbsp;&nbsp;&nbsp;: (<input type="text" name="flora_tidak_ada" value={formData.flora_tidak_ada || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) Tidak ada (<input type="text" name="flora_ada" value={formData.flora_ada || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) Ada,
+            <br />
+            Yaitu&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="flora_jenis" value={formData.flora_jenis || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px'}} /> 
+            <br />
+            Fauna&nbsp;&nbsp;: (<input type="text" name="fauna_tidak_ada" value={formData.fauna_tidak_ada || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) Tidak ada (<input type="text" name="fauna_ada" value={formData.fauna_ada || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) Ada,   
+            <br />
+            Yaitu&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="fauna_jenis" value={formData.fauna_jenis || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px'}} />
+          </td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>6</td>
+          <td>Kondisi drainase alami dan buatan</td>
+          <td>
+            Drainase Alami : (<input type="text" name="drainase_alami_tidak_ada" value={formData.drainase_alami_tidak_ada || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) Tidak ada (<input type="text" name="drainase_alami_ada" value={formData.drainase_alami_ada || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) Ada 
+            <br />
+            Drainase Buatan : (<input type="text" name="drainase_buatan_tidak_ada" value={formData.drainase_buatan_tidak_ada || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) Tidak ada (<input type="text" name="drainase_buatan_ada" value={formData.drainase_buatan_ada || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) Ada
+            <br />
+            Bila ada : (<input type="text" name="drainase_buatan_saluran_terbuka" value={formData.drainase_buatan_saluran_terbuka || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) saluran terbuka, (<input type="text" name="drainase_buatan_saluran_terkontrol" value={formData.drainase_buatan_saluran_terkontrol || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'center'}} />) saluran terkontrol 
+            <br />
+            Tinggi muka air dalam saluran : <input type="number" name="tinggi_muka_air_saluran" value={formData.tinggi_muka_air_saluran || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt', padding:'0px', textAlign: 'right'}} /> cm
+          </td>
+        </tr>
+      </tbody>
+</table>
+</div>
+  );
+};
+
+// --- FORM 2 ---
+const Tallysheet2 = ({ formData, setFormData }) => {
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value,
+    }));
+  };
+return (
+    <div className="page-container">
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          body {
+            margin: 0;
+            font-family: cambria;
+          }
+
+          .page-container {
+            padding: 30.236px 37.795px 30.236px 56.693px;
+            background-color: #fff;
+          }
+
+          .table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          .table th {
+            background-color: #D5DCE4;
+            text-align: center;
+            border: 1px solid black;
+            padding: 8px;
+            font-family: Cambria;
+            font-size: 12pt;
+          }
+          .table td {
+            text-align: left;
+            border: 1px solid black;
+            padding: 8px;
+            font-family: Cambria;
+            font-size: 11pt;
+            vertical-align: top;
+          }
+          h1, h2 {
+            font-family: Cambria;
+            font-size: 14pt;
+          }
+        `,
+        }}
+      />
+  
+    <table className="table">
+      <tbody><tr>
+          <th style={{width: '2%'}}>No.</th>
+          <th colSpan={2}>Keterangan</th>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center', verticalAlign: 'top'}}>7</td>
+          <td>Kualitas air tanah (AT) dan saluran (AS)
+            <br />
+            <br />
+            <span style={{fontSize: '8pt'}}>
+              Catatan : Pengukuran pengabilan sampel dilakukan pada kedalaman 0 – 50 cm dilahan Gambut dan Non Gambut"&gt;.
+            </span>
+          </td>
+          <td>
+            Keasaman (pH) :
+            <br />
+            AT = <input type="number" name="kualitas_air_tanah_ph" value={formData.kualitas_air_tanah_ph || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} />, AS = <input type="number" name="kualitas_air_saluran_ph" value={formData.kualitas_air_saluran_ph || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> 
+            <br />
+            Daya Hantar Listrik (EC) :
+            AT = <input type="number" name="kualitas_air_tanah_ec" value={formData.kualitas_air_tanah_ec || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> , AS = <input type="number" name="kualitas_air_saluran_ec" value={formData.kualitas_air_saluran_ec || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> (µS)
+            <br />
+            TDS : AT = <input type="number" name="kualitas_air_tanah_tds" value={formData.kualitas_air_tanah_tds || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> , AS = <input type="number" name="kualitas_air_saluran_tds" value={formData.kualitas_air_saluran_tds || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> (ppm)
+          </td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>8</td>
+          <td style={{width: '30%'}}>Karakteristik substratum tanah liat (bahan induk)</td>
+          <td>
+            Keasaman (pH) : <input type="number" name="substratum_tanah_liat_ph" value={formData.substratum_tanah_liat_ph || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> 
+            <br />
+            Daya Hantar Listrik (EC) : <input type="number" name="substratum_tanah_liat_ec" value={formData.substratum_tanah_liat_ec || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> (µS)
+          </td></tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>9</td>
+          <td>Tipe Luapan (wawancara) dimusim kemaurau dan hujan</td>
+          <td>
+            Kemarau : (<input type="text" name="tipe_luapan_kemarau_a" value={formData.tipe_luapan_kemarau_a || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) A, (<input type="text" name="tipe_luapan_kemarau_b" value={formData.tipe_luapan_kemarau_b || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) B, (<input type="text" name="tipe_luapan_kemarau_c" value={formData.tipe_luapan_kemarau_c || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) C, (<input type="text" name="tipe_luapan_kemarau_d" value={formData.tipe_luapan_kemarau_d || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) D
+            <br />
+            Hujan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: (<input type="text" name="tipe_luapan_hujan_a" value={formData.tipe_luapan_hujan_a || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) A, (<input type="text" name="tipe_luapan_hujan_b" value={formData.tipe_luapan_hujan_b || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) B, (<input type="text" name="tipe_luapan_hujan_c" value={formData.tipe_luapan_hujan_c || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) C, (<input type="text" name="tipe_luapan_hujan_d" value={formData.tipe_luapan_hujan_d || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) D
+          </td></tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>10</td>
+          <td>Ketebalan gambut</td>
+          <td>
+            <input type="number" name="ketebalan_gambut_cm" value={formData.ketebalan_gambut_cm || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> cm,
+            <br />
+            Tingkat perombakan di 0 – 50 cm : 
+            <br />
+            (<input type="text" name="tingkat_perombakan_saprik" value={formData.tingkat_perombakan_saprik || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) saprik, (<input type="text" name="tingkat_perombakan_hemik" value={formData.tingkat_perombakan_hemik || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) hemik, (<input type="text" name="tingkat_perombakan_fibrik" value={formData.tingkat_perombakan_fibrik || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) fibrik
+          </td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>11</td>
+          <td>Karakteristik substratum dibawah lapisan gambut</td>
+          <td>
+            (<input type="text" name="substratum_pasir_kwarsa" value={formData.substratum_pasir_kwarsa || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Pasir kwarsa,  (<input type="text" name="substratum_clay_sedimen_sungai" value={formData.substratum_clay_sedimen_sungai || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Clay/sedimen sungai,
+            <br />
+            (<input type="text" name="substratum_sedimen_berpirit" value={formData.substratum_sedimen_berpirit || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Sedimen berpirit, (<input type="text" name="substratum_granit" value={formData.substratum_granit || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Granit,
+            <br />
+            (<input type="text" name="substratum_lainnya_checkbox" value={formData.substratum_lainnya_checkbox || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Lainnya <input type="text" name="substratum_lainnya_text" value={formData.substratum_lainnya_text || ""} onChange={handleChange} style={{width: '200px', fontFamily: 'cambria', fontSize: '11.0pt'}} />
+          </td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>12</td>
+          <td>Perkembangan kondisi atau tingkat kerusakan lahan gambut</td>
+          <td>
+            (<input type="text" name="kerusakan_drainase_buatan" value={formData.kerusakan_drainase_buatan || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Terdapat drainase buatan
+            <br />
+            (<input type="text" name="kerusakan_terekspos_sedimen" value={formData.kerusakan_terekspos_sedimen || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Tereksposnya sedimen berpirit / kwarsa
+            <br />
+            Kondisi tanaman : (<input type="text" name="kondisi_tanaman_tidak_normal" value={formData.kondisi_tanaman_tidak_normal || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) tidak normal, (<input type="text" name="kondisi_tanaman_tidak_produktif" value={formData.kondisi_tanaman_tidak_produktif || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) tidak produktif
+            <br />
+            (<input type="text" name="kondisi_tanaman_miring_tumbang" value={formData.kondisi_tanaman_miring_tumbang || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) miring/tumbang, (<input type="text" name="kondisi_tanaman_terjadi_subsiden_checkbox" value={formData.kondisi_tanaman_terjadi_subsiden_checkbox || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) terjadi subsiden <input type="number" name="kondisi_tanaman_subsiden_cm" value={formData.kondisi_tanaman_subsiden_cm || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> cm
+            <br />
+            Kerapatan tajuk : (<input type="text" name="kerapatan_tajuk" value={formData.kerapatan_tajuk || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />)
+          </td>
+        </tr>
+        <tr>
+          <td rowSpan={2} style={{width: '2%', textAlign: 'center'}}>13</td>
+          <td rowSpan={2}>Informasi kejadian kebakaran lahan dan hari hujan (sebelumnya)</td>
+          <td>
+            <u>Kebakaran lahan </u>:
+            <br />
+            Kejadian tahun <input type="text" name="kebakaran_tahun" value={formData.kebakaran_tahun || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} />, Bulan <input type="text" name="kebakaran_bulan" value={formData.kebakaran_bulan || ""} onChange={handleChange} style={{width: '100px', fontFamily: 'cambria', fontSize: '11.0pt'}} />, Tanggal <input type="text" name="kebakaran_tanggal" value={formData.kebakaran_tanggal || ""} onChange={handleChange} style={{width: '30px', fontFamily: 'cambria', fontSize: '11.0pt'}} />
+            <br />
+            Lama kejadian: <input type="text" name="kebakaran_lama_kejadian_bulan" value={formData.kebakaran_lama_kejadian_bulan || ""} onChange={handleChange} style={{width: '100px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> Bulan
+            <br />
+            Upaya pemadaman:  (<input type="text" name="pemadaman_swadaya_masyarakat" value={formData.pemadaman_swadaya_masyarakat || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) swadaya masyarakat
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<input type="text" name="pemadaman_bantuan_pemerintah" value={formData.pemadaman_bantuan_pemerintah || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) bantuan pemerintah
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <u>Kejadian hari hujan </u>:
+            <br />
+            Terakhir kejadian hujan : <input type="text" name="hujan_tanggal" value={formData.hujan_tanggal || ""} onChange={handleChange} style={{width: '30px', fontFamily: 'cambria', fontSize: '11.0pt'}} />/<input type="text" name="hujan_bulan" value={formData.hujan_bulan || ""} onChange={handleChange} style={{width: '30px', fontFamily: 'cambria', fontSize: '11.0pt'}} />/<input type="text" name="hujan_tahun" value={formData.hujan_tahun || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} />
+            <br />
+            Lama kejadian hujan : <input type="number" name="hujan_lama_kejadian_jam" value={formData.hujan_lama_kejadian_jam || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> Jam 
+            <br />
+            Intensitas curah hujan : 
+            <br />
+            (<input type="text" name="intensitas_hujan_tinggi" value={formData.intensitas_hujan_tinggi || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Tinggi, (<input type="text" name="intensitas_hujan_sedang" value={formData.intensitas_hujan_sedang || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Sedang, (<input type="text" name="intensitas_hujan_rendah" value={formData.intensitas_hujan_rendah || ""} onChange={handleChange} style={{width: '20px', fontFamily: 'cambria', fontSize: '11.0pt'}} />) Rendah
+          </td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}} />
+          <td colSpan={2}><b><u>ANALISIS LABORATORIUM  (Sampel Porositas &amp; Kelengasan)</u></b></td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>14</td>
+          <td>Porositas (Bobot Isi)</td>
+          <td>Kedalaman 0-50 cm	       : <input type="number" name="porositas_bobot_isi" value={formData.porositas_bobot_isi || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> (%)</td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>15</td>
+          <td>Kelengasan (Kadar Air)</td>
+          <td>Kedalaman 0-50 cm	       : <input type="number" name="kelengasan_kadar_air" value={formData.kelengasan_kadar_air || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> (%)</td>
+        </tr>
+        <tr>
+          <td style={{width: '2%', textAlign: 'center'}}>16</td>
+          <td>C-Organik</td>
+          <td>Kedalaman 0-50 cm	       : <input type="number" name="c_organik" value={formData.c_organik || ""} onChange={handleChange} style={{width: '60px', fontFamily: 'cambria', fontSize: '11.0pt'}} /> (%)</td>
+        </tr> 
+        <tr>
+          <td colSpan={3}><b>Keterangan / Sketsa Lokasi :</b>
+            <br />
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput" name="sketsa_lokasi_image" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+      </tbody></table>
+</div>
+  );
+};
+
+// --- FORM 3 ---
+const Tallysheet3 = ({ formData, setFormData }) => {
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value,
+    }));
+  };
+  return (
+    <div className="page-container">
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          body {
+            margin: 0;
+            font-family: cambria;
+          }
+
+          .page-container {
+            padding: 30.236px 37.795px 30.236px 56.693px;
+            background-color: #fff;
+          }
+          .table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          .table th {
+            background-color: #D5DCE4;
+            text-align: center;
+            border: 1px solid black;
+            padding: 8px;
+            font-family: cambria;
+            font-size: 11pt;
+          }
+          .table td {
+            text-align: left;
+            border: 1px solid black;
+            padding: 8px;
+            font-family: cambria;
+            font-size: 11pt;
+            vertical-align: top;
+          }
+          button[type="submit"] {
+            padding: 8px 20px;
+            font-size: 14px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+
+          button[type="submit"]:hover {
+            background-color: #45a049;
+          }
+
+          .button-container {
+            margin-top: 40px;
+            text-align: right;
+          }
+
+	  ol {
+      	    list-style-type: decimal;
+    	  }
+
+    	  li {
+     	    margin: 0px;
+    	  }
+        `,
+      }} 
+    />
+  
+    <table className="table">
+      <tbody><tr>
+          <th colSpan={12} style={{textAlign: 'center'}}>
+            <b>B.	FOTO  LAPANGAN</b>
+            <br />
+            <span style={{fontSize: '9pt', fontWeight: 'normal'}}>
+              <i>Seluruh hasil foto yang diambil harus jelas dan tidak membelakangi matahari</i>
+            </span>
+          </th>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} style={{fontWeight: 'bold', paddingLeft: '15px', margin: 0}}>
+              <li>&nbsp;&nbsp;Air tanah, genangan atau banjir</li></ol></td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput" name="foto_air_tanah_genangan_1" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput1" name="foto_air_tanah_genangan_2" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={2} style={{fontWeight: 'bold', paddingLeft: '15px', margin: 0}}>
+              <li>&nbsp;&nbsp;Tutupan lahan, penggunaan lahan dan kondisinya</li></ol></td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput2" name="foto_tutupan_lahan_1" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput3" name="foto_tutupan_lahan_2" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={3} style={{fontWeight: 'bold', paddingLeft: '15px', margin: 0}}>
+              <li>&nbsp;&nbsp;Keberadaan flora dan fauna yang dilindungi</li></ol></td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput4" name="foto_flora_fauna_1" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput5" name="foto_flora_fauna_2" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={4} style={{fontWeight: 'bold', paddingLeft: '15px', margin: 0}}>
+              <li>&nbsp;&nbsp;Kondisi drainase alami dan drainase buatan</li></ol></td>
+        </tr>
+        <tr style={{fontWeight: 'bold'}}>
+          <td colSpan={6} style={{textAlign: 'center'}}>Drainase alami</td>
+          <td colSpan={6} style={{textAlign: 'center'}}>Drainase buatan</td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput6" name="foto_drainase_alami" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput7" name="foto_drainase_buatan" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={5} style={{fontWeight: 'bold', paddingLeft: '15px', margin: 0}}>
+              <li>&nbsp;&nbsp;Kualitas Air/Kondisi Air Kanal</li></ol></td>
+        </tr>
+        <tr style={{fontWeight: 'bold'}}>
+          <td colSpan={4} style={{textAlign: 'center'}}>EC</td>
+          <td colSpan={4} style={{textAlign: 'center'}}>TDS</td>
+          <td colSpan={4} style={{textAlign: 'center'}}>pH</td>
+        </tr>
+        <tr>
+          <td colSpan={4}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput8" name="foto_kualitas_air_ec" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={4}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput9" name="foto_kualitas_air_tds" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={4}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput10" name="foto_kualitas_air_ph" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={6} style={{fontWeight: 'bold', paddingLeft: '15px', margin: 0}}>
+              <li>&nbsp;&nbsp;Pengukuran Tinggi Muka Air Tanah (TMAT) pada lubang bor titik pengamatan</li></ol></td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput11" name="foto_tmat_1" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput12" name="foto_tmat_2" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={7} style={{fontWeight: 'bold', paddingLeft: '15px', margin: 0}}>
+              <li>&nbsp;&nbsp;Ketebalan gambut</li></ol></td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput13" name="foto_ketebalan_gambut_1" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput14" name="foto_ketebalan_gambut_2" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={8} style={{fontWeight: 'bold', paddingLeft: '15px', margin: 0}}>
+              <li>&nbsp;&nbsp;Karakteristik subsratum dibawah lapisan gambut</li></ol></td>
+        </tr>
+        <tr style={{fontWeight: 'bold'}}>
+          <td colSpan={6} style={{textAlign: 'center'}}>EC</td>
+          <td colSpan={6} style={{textAlign: 'center'}}>pH</td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput15" name="foto_substratum_ec" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput16" name="foto_substratum_ph" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={9} style={{fontWeight: 'bold', paddingLeft: '15px', margin: 0}}>
+              <li>&nbsp;&nbsp;Perkembangan kondisi atau tingkat kerusakan lahan gambut (fungsi lindung/fungsi budidaya)</li></ol></td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput17" name="foto_kerusakan_lahan_gambut_1" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput18" name="foto_kerusakan_lahan_gambut_2" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={10} style={{fontWeight: 'bold', paddingLeft: '20px', margin: 0}}>
+              <li>&nbsp;Karakteristik tanah dan kedalaman lapisan pirit</li></ol></td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput19" name="foto_karakteristik_tanah_pirit_1" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput20" name="foto_karakteristik_tanah_pirit_2" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={11} style={{fontWeight: 'bold', paddingLeft: '20px', margin: 0}}>
+              <li>&nbsp;Porositas dan Kelengasan</li></ol></td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput21" name="foto_porositas_kelengasan_1" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput22" name="foto_porositas_kelengasan_2" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={12}>
+            <ol type={1} start={12} style={{fontWeight: 'bold', paddingLeft: '20px', margin: 0}}>
+              <li>&nbsp;Foto Tambahan</li></ol></td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput23" name="foto_tambahan_1" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput24" name="foto_tambahan_2" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput25" name="foto_tambahan_3" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput26" name="foto_tambahan_4" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput27" name="foto_tambahan_5" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput28" name="foto_tambahan_6" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+        <tr>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput29" name="foto_tambahan_7" onChange={handleChange} accept="image/*" />
+          </td>
+          <td colSpan={6}>
+            <div id="imagePreview" style={{textAlign: 'center'}} />
+            <input type="file" id="imageInput30" name="foto_tambahan_8" onChange={handleChange} accept="image/*" />
+          </td>
+        </tr>
+      </tbody></table>
